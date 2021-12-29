@@ -5,9 +5,11 @@ declare namespace solveTypes {
     setUser: React.Dispatch<React.SetStateAction<string>>;
     setLogged: React.Dispatch<React.SetStateAction<boolean>>;
   }
+  type participents = string[];
   interface chatContext {
     chat: chatState[];
     setChat: React.Dispatch<React.SetStateAction<chatState[]>>;
     sockerRef: React.MutableRefObject<any>;
+    participents: participents;
   }
 }
