@@ -1,11 +1,21 @@
-import React, { useEffect, useContext, useRef, useState } from "react";
+import React, {
+  useEffect,
+  useContext,
+  useRef,
+  useState,
+  createContext,
+} from "react";
 import { context } from "../App";
 import { io } from "socket.io-client";
+import ChatLog from "./ChatLog";
+import ChatInput from "./ChatInput";
+export const chatContext = createContext<Partial<solveTypes.chatContext>>({});
+
 export default function Chat() {
   const [chat, setChat] = useState<solveTypes.chatState[]>([]);
   const { user } = useContext(context);
-  const inputMsg = useRef<HTMLInputElement>(null);
   const sockerRef = useRef<any>();
+
   useEffect(() => {
     sockerRef.current = io("http://localhost:4000");
     sockerRef.current.emit("join", user);
@@ -24,25 +34,12 @@ export default function Chat() {
     });
   }, []);
 
-  const renderChat = () => {
-    return chat.map(({ name, message }) => (
-      <p>
-        {name}: {message}
-      </p>
-    ));
-  };
-  const sendMsg = (e: React.ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const message = inputMsg.current?.value;
-    sockerRef.current.emit("message", { name: user, message });
-  };
   return (
-    <div className="chat">
-      <div>{renderChat()}</div>
-      <form onSubmit={sendMsg}>
-        <input ref={inputMsg} placeholder="msg"></input>
-        <button type="submit">send</button>
-      </form>
-    </div>
+    <chatContext.Provider value={{ chat, setChat, sockerRef }}>
+      <div className="chat">
+        <ChatLog />
+        <ChatInput />
+      </div>
+    </chatContext.Provider>
   );
 }
