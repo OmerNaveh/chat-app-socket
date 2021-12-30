@@ -80,11 +80,6 @@ body {
   font-size: 10px;
   text-align: center;
 }
-.chatParticipents {
-  grid-column: 1/2;
-  grid-row: 2/6;
-  text-align: center;
-}
 .chatLog {
   grid-row: 2/5;
   grid-column: 2/6;
@@ -102,15 +97,19 @@ body {
   color: white;
   text-align: center;
   max-width: fit-content;
-  margin: 0 auto;
+  margin: 0.5rem auto 0 auto;
 }
 .me {
   color: black;
   background-color: lightgreen;
   text-align: right;
   width: fit-content;
+  max-width: 70%;
+  min-width: 20%;
   border-radius: 0.2rem;
   margin: 0 2px 0.5rem auto;
+  overflow: hidden;
+  white-space: pre-line;
 }
 .me > p {
   text-align: left;
@@ -123,7 +122,11 @@ body {
   flex-direction: column;
   text-align: left;
   margin: 0 auto 0.5rem 2px;
+  min-width: 20%;
   width: fit-content;
+  max-width: 70%;
+  overflow: hidden;
+  white-space: pre-line;
 }
 .chatInput {
   grid-row: 5/6;
@@ -158,4 +161,26 @@ body {
 .noDirectBtn:hover {
   background-color: #f3636b;
   border: 1px solid #f3636b;
+}
+.chatParticipents {
+  grid-column: 1/2;
+  grid-row: 2/6;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+.green {
+  color: green;
+}
+.partCounter {
+  font-size: 1.5rem;
+}
+.activeUsers:hover {
+  color: rgb(80, 79, 79);
+  cursor: pointer;
+}
+.senderName {
+  font-weight: bold;
+  font-family: Helvetica, sans-serif;
+  margin-bottom: 0.2rem;
 }

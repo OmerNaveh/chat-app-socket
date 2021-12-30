@@ -12,11 +12,13 @@ export default function ChatParticipents() {
       return (
         <p
           key={nanoid()}
+          className="activeUsers"
           onClick={() => {
             privateDM(user);
           }}
         >
-          {user}
+          <i className="fas fa-dot-circle green"></i>
+          {" " + user}
         </p>
       );
     });
@@ -27,7 +29,10 @@ export default function ChatParticipents() {
   };
   return (
     <div className="chatParticipents">
-      <p>{counter}</p>
+      <p className="partCounter">
+        <i className="fas fa-users"></i>
+        {" " + counter}
+      </p>
       {showParticipents()}
     </div>
   );

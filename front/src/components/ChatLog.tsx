@@ -12,12 +12,12 @@ export default function ChatLog() {
         name === "server" ? "server" : name === user ? "me" : "others";
       return !mdirect ? (
         <div key={nanoid()} className={messageSender}>
-          {name !== "server" ? <p>{name}</p> : ""}
+          {name !== "server" ? <p className="senderName">{name}</p> : ""}
           <p>{message}</p>
         </div>
       ) : (
         <div key={nanoid()} className={messageSender}>
-          {name + " (private)"}
+          <p className="senderName">{name + " (private)"}</p>
           <p>{message}</p>
         </div>
       );
