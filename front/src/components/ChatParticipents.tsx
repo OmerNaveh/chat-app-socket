@@ -26,7 +26,7 @@ export default function ChatParticipents() {
     setDirect(user);
   };
   return (
-    <div>
+    <div className="chatParticipents">
       <p>{counter}</p>
       {showParticipents()}
     </div>

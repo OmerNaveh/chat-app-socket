@@ -17,5 +17,5 @@ export default function ChatLog() {
       )
     );
   };
-  return <div>{renderChat()}</div>;
+  return <div className="chatLog">{renderChat()}</div>;
 }

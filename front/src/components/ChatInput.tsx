@@ -20,14 +20,14 @@ export default function ChatInput() {
   };
   if (!direct)
     return (
-      <form onSubmit={sendMsg}>
+      <form onSubmit={sendMsg} className="chatInput">
         <input autoFocus ref={inputMsg} placeholder="msg"></input>
         <button type="submit">send</button>
       </form>
     );
   else
     return (
-      <form onSubmit={sendMsg}>
+      <form onSubmit={sendMsg} className="chatInput">
         <input
           autoFocus
           ref={inputMsg}

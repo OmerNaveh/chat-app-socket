@@ -10,6 +10,7 @@ import { io } from "socket.io-client";
 import ChatLog from "./ChatLog";
 import ChatInput from "./ChatInput";
 import ChatParticipents from "./ChatParticipents";
+import ChatHeader from "./ChatHeader";
 export const chatContext = createContext<Partial<solveTypes.chatContext>>({});
 
 export default function Chat() {
@@ -59,6 +60,7 @@ export default function Chat() {
       value={{ chat, setChat, sockerRef, participents, direct, setDirect }}
     >
       <div className="chat">
+        <ChatHeader />
         <ChatLog />
         <ChatInput />
         <ChatParticipents />
