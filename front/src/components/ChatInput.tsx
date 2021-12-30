@@ -21,8 +21,15 @@ export default function ChatInput() {
   if (!direct)
     return (
       <form onSubmit={sendMsg} className="chatInput">
-        <input autoFocus ref={inputMsg} placeholder="msg"></input>
-        <button type="submit">send</button>
+        <input
+          autoFocus
+          ref={inputMsg}
+          placeholder="Text Message"
+          className="inputMsg"
+        ></input>
+        <button type="submit" className="sendMsg">
+          <i className="fas fa-arrow-circle-right"></i>
+        </button>
       </form>
     );
   else
@@ -31,16 +38,20 @@ export default function ChatInput() {
         <input
           autoFocus
           ref={inputMsg}
+          className="inputMsg"
           placeholder={`private to ${direct}`}
         ></input>
-        <button type="submit">send</button>
+        <button type="submit" className="sendMsg">
+          <i className="fas fa-arrow-circle-right"></i>
+        </button>
         <button
+          className="noDirectBtn"
           type="button"
           onClick={() => {
             resetDirect();
           }}
         >
-          x
+          <i className="fas fa-times-circle"></i>
         </button>
       </form>
     );

@@ -80,18 +80,82 @@ body {
   font-size: 10px;
   text-align: center;
 }
+.chatParticipents {
+  grid-column: 1/2;
+  grid-row: 2/6;
+  text-align: center;
+}
 .chatLog {
   grid-row: 2/5;
   grid-column: 2/6;
   border: 1px solid black;
+  overflow-y: scroll;
+  background-color: rgb(255, 246, 228);
+}
+.chatLog > div > p {
+  margin: 0.5%;
+  padding: 0;
+}
+.server {
+  background-color: gray;
+  border-radius: 4rem;
+  color: white;
+  text-align: center;
+  max-width: fit-content;
+  margin: 0 auto;
+}
+.me {
+  color: black;
+  background-color: lightgreen;
+  text-align: right;
+  width: fit-content;
+  border-radius: 0.2rem;
+  margin: 0 2px 0.5rem auto;
+}
+.me > p {
+  text-align: left;
+}
+.others {
+  background-color: lightskyblue;
+  border-radius: 0.2rem;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 0 auto 0.5rem 2px;
+  width: fit-content;
 }
 .chatInput {
   grid-row: 5/6;
   grid-column: 2/6;
   text-align: center;
+  display: flex;
+  height: 40%;
 }
-.chatParticipents {
-  grid-column: 1/2;
-  grid-row: 2/6;
+.inputMsg {
+  width: 100%;
+}
+.sendMsg {
+  background-color: #81f06b;
+  border: 1px solid #81f06b;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
   text-align: center;
+}
+.sendMsg:hover {
+  background-color: #70e459;
+  border: 1px solid #70e459;
+}
+.noDirectBtn {
+  background-color: #f3747a;
+  border: 1px solid #f3747a;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+}
+.noDirectBtn:hover {
+  background-color: #f3636b;
+  border: 1px solid #f3636b;
 }

@@ -19,7 +19,11 @@ export default function Chat() {
   const [direct, setDirect] = useState<string>("");
   const { user } = useContext(context);
   const sockerRef = useRef<any>();
-  console.log(direct);
+  const scroll = () => {
+    const div = document.querySelector(".chatLog");
+    if (!div) return;
+    div.scroll({ top: div.scrollHeight, behavior: "smooth" }); //auto scroll
+  };
   useEffect(() => {
     sockerRef.current = io("http://localhost:4000");
     sockerRef.current.emit("join", user);
@@ -29,6 +33,7 @@ export default function Chat() {
         setChat((prevState: solveTypes.chatState[]) => {
           return [...prevState, { name, message }];
         });
+        scroll(); //autoscroll
       }
     );
     sockerRef.current.on(
@@ -39,6 +44,7 @@ export default function Chat() {
           setChat((prevState: solveTypes.chatState[]) => {
             return [...prevState, { name, message, mdirect }];
           });
+          scroll(); //autoscroll
         }
       }
     );
@@ -46,6 +52,7 @@ export default function Chat() {
       setChat((prevState: solveTypes.chatState[]) => {
         return [...prevState, { name: "server", message: msg }];
       });
+      scroll();
     });
     sockerRef.current.on(
       "participents",
