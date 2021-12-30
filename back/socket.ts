@@ -13,8 +13,8 @@ export default function socket({ io }: { io: Server }) {
       user = name;
     });
 
-    socket.on("message", ({ name, message }) => {
-      io.emit("messageBack", { name, message });
+    socket.on("message", ({ name, message, mdirect }) => {
+      io.emit("messageBack", { name, message, mdirect });
     });
 
     socket.on("disconnect", () => {
