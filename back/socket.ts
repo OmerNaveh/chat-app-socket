@@ -18,12 +18,22 @@ export default function socket({ io }: { io: Server }) {
         ? io.emit("messageBackPrivate", { name, message, mdirect })
         : io.emit("messageBack", { name, message });
     });
-
-    socket.on("disconnect", () => {
-      console.log(`${user} disconnected`);
+    socket.on("unjoin", () => {
+      console.log(`${user} logged out`);
       io.emit("announce", `${user} has left the chat`);
       participents.splice(participents.indexOf(user), 1);
       io.emit("participents", participents);
+      console.log(user, participents);
+    });
+
+    socket.on("disconnect", () => {
+      console.log(`${user} disconnected`);
+      if (participents.indexOf(user) !== -1) {
+        io.emit("announce", `${user} has left the chat`);
+        participents.splice(participents.indexOf(user), 1);
+      }
+      io.emit("participents", participents);
+      console.log(user, participents);
     });
   });
 }

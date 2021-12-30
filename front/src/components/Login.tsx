@@ -13,11 +13,17 @@ export default function Login() {
     setLogged(true);
   };
   return (
-    <div>
+    <div className="login">
       <h1>Login</h1>
       <form onSubmit={log}>
-        <input ref={nameInput} placeholder="Name"></input>
-        <button type="submit">Enter</button>
+        <input
+          className="loginInput"
+          ref={nameInput}
+          placeholder="Name"
+        ></input>
+        <button className="loginBtn" type="submit">
+          Enter
+        </button>
       </form>
     </div>
   );
