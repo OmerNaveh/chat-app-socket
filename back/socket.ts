@@ -14,7 +14,9 @@ export default function socket({ io }: { io: Server }) {
     });
 
     socket.on("message", ({ name, message, mdirect }) => {
-      io.emit("messageBack", { name, message, mdirect });
+      mdirect
+        ? io.emit("messageBackPrivate", { name, message, mdirect })
+        : io.emit("messageBack", { name, message });
     });
 
     socket.on("disconnect", () => {

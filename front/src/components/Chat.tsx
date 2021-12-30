@@ -24,15 +24,19 @@ export default function Chat() {
     sockerRef.current.emit("join", user);
     sockerRef.current.on(
       "messageBack",
+      ({ name, message }: solveTypes.chatState) => {
+        setChat((prevState: solveTypes.chatState[]) => {
+          return [...prevState, { name, message }];
+        });
+      }
+    );
+    sockerRef.current.on(
+      "messageBackPrivate",
       ({ name, message, mdirect }: solveTypes.chatState) => {
         if (mdirect && (user === name || user === mdirect)) {
           //private messages only showing on sender and reciever side
           setChat((prevState: solveTypes.chatState[]) => {
             return [...prevState, { name, message, mdirect }];
-          });
-        } else {
-          setChat((prevState: solveTypes.chatState[]) => {
-            return [...prevState, { name, message }];
           });
         }
       }
