@@ -18,12 +18,19 @@ export default function ChatInput() {
     if (!setDirect) return;
     setDirect("");
   };
+  const typing = () => {
+    if (!sockerRef) return;
+    sockerRef.current.emit("typing");
+  };
   if (!direct)
     return (
       <form onSubmit={sendMsg} className="chatInput">
         <input
           autoFocus
           ref={inputMsg}
+          onChange={() => {
+            typing();
+          }}
           placeholder="Text Message"
           className="inputMsg"
         ></input>

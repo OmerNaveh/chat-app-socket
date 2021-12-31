@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import { chatContext } from "./Chat";
 import { context } from "../App";
 export default function ChatLog() {
-  const { chat } = useContext(chatContext);
+  const { chat, typing } = useContext(chatContext);
   const { user } = useContext(context);
   const renderChat = () => {
     if (!chat) return <div></div>;
@@ -23,5 +23,10 @@ export default function ChatLog() {
       );
     });
   };
-  return <div className="chatLog">{renderChat()}</div>;
+  return (
+    <div className="chatLog">
+      {renderChat()}
+      {typing ? <p className="typingMsg">{typing}</p> : ""}
+    </div>
+  );
 }
