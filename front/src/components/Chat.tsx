@@ -17,6 +17,7 @@ export default function Chat() {
   const [chat, setChat] = useState<solveTypes.chatState[]>([]);
   const [participents, setParticipents] = useState<solveTypes.participents>([]);
   const [direct, setDirect] = useState<string>("");
+  const [typing, setTyping] = useState<string>("");
   const { user } = useContext(context);
   const sockerRef = useRef<any>();
   const scroll = () => {
@@ -60,11 +61,28 @@ export default function Chat() {
         setParticipents([...partiArr]);
       }
     );
+    sockerRef.current.on("announceTyping", async (userName: string) => {
+      if (userName !== user) {
+        setTyping(`${userName} is typing...`);
+        console.log("typing");
+        await setTimeout(() => {
+          setTyping("");
+        }, 3000); // remove typing msg after 3s if the user stopped typing- if hes still typing the function will run every onchange
+      }
+    });
   }, []);
 
   return (
     <chatContext.Provider
-      value={{ chat, setChat, sockerRef, participents, direct, setDirect }}
+      value={{
+        chat,
+        setChat,
+        sockerRef,
+        participents,
+        direct,
+        setDirect,
+        typing,
+      }}
     >
       <div className="chat">
         <ChatHeader />

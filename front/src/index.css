@@ -184,3 +184,6 @@ body {
   font-family: Helvetica, sans-serif;
   margin-bottom: 0.2rem;
 }
+.typingMsg {
+  opacity: 0.7;
+}

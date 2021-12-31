@@ -25,6 +25,9 @@ export default function socket({ io }: { io: Server }) {
       io.emit("participents", participents);
       console.log(user, participents);
     });
+    socket.on("typing", () => {
+      io.emit("announceTyping", user);
+    });
 
     socket.on("disconnect", () => {
       console.log(`${user} disconnected`);

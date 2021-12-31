@@ -13,5 +13,6 @@ declare namespace solveTypes {
     participents: participents;
     direct: string;
     setDirect: React.Dispatch<React.SetStateAction<string>>;
+    typing: string;
   }
 }
