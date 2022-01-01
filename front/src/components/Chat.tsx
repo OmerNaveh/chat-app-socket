@@ -34,6 +34,7 @@ export default function Chat() {
         setChat((prevState: solveTypes.chatState[]) => {
           return [...prevState, { name, message }];
         });
+        setTyping("");
         scroll(); //autoscroll
       }
     );

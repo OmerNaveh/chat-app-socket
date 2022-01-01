@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  backend:
+    build: ./back
+    ports:
+      - 4000:4000
+    image: omernaveh/backend
+
+  frontend:
+    build: ./front
+    ports:
+      - 3000:3000
+    image: omernaveh/frontend
